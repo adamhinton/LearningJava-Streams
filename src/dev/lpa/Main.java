@@ -50,15 +50,27 @@ public class Main {
 
         // Convention to do one op per line
         bingoPool.stream()
-                // Max elements to stream
                 .limit(15)
-                // get only Gs and Os
                 .filter(s -> s.indexOf('G') == 0 || s.indexOf("O") == 0)
-                // Add dash after letter
                 .map(s -> s.charAt(0) + "-" + s.substring(1))
-                // Sort
-                .sorted()
-                // Print
-                .forEach(s-> System.out.print(s + " "));
+                .sorted();
+//                .forEach(s-> System.out.print(s + " "));
+
+        // Stream didn't affect orig items
+        System.out.println("\n---------------------------");
+
+//        for (int i=0; i<15; i++){
+//            System.out.println(bingoPool.get(i ));
+//        }
+
+        // The chain is called a `stream pipeline`
+        // End in terminal operation - produces result or sideeffect
+            // frex forEach
+        // Term ops are required
+        // Everything in bw is an *intermediate op*
+        // Intmdt ops aren't required
+        // You can have a pipeline with just src and term op
+        // Int op processes els on stream, and returns new stream as result
+
     }
 }
