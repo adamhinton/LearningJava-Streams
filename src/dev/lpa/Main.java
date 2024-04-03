@@ -25,7 +25,9 @@ public class Main {
         }
         System.out.println("-------------------");
 
-        List<String> firstOnes = bingoPool.subList(0, 15);
+//        List<String> firstOnes = bingoPool.subList(0, 15);
+        List<String> firstOnes = new ArrayList<>(bingoPool.subList(0, 15));
+
         firstOnes.sort(Comparator.naturalOrder());
         firstOnes.replaceAll(s->{
             if (s.indexOf('G') == 0 || s.indexOf("O") == 0) {
@@ -33,6 +35,30 @@ public class Main {
                 System.out.println(updated + " ");
                 return updated;
             }
+            return s;
         });
+
+        System.out.println("\n---------------------------");
+
+
+
+        for (int i=0; i<15; i++){
+            System.out.println(bingoPool.get(i ));
+        }
+        System.out.println("-------------------");
+
+
+        // Convention to do one op per line
+        bingoPool.stream()
+                // Max elements to stream
+                .limit(15)
+                // get only Gs and Os
+                .filter(s -> s.indexOf('G') == 0 || s.indexOf("O") == 0)
+                // Add dash after letter
+                .map(s -> s.charAt(0) + "-" + s.substring(1))
+                // Sort
+                .sorted()
+                // Print
+                .forEach(s-> System.out.print(s + " "));
     }
 }
